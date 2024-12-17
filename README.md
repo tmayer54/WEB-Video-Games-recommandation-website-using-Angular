@@ -41,6 +41,14 @@ Alternatively, both the back-end and front-end can be launched with a single com
 ```bash
 npm start
 
+
+  - Profile picture  
+  - Status (developer or standard user)  
+
+Once registered, the user is automatically logged into their account and can reconnect at any time using their credentials.  
+
+---
+
 ## Features  
 
 ### Pre-registered Users  
@@ -118,3 +126,4 @@ Once registered, the user is automatically logged into their account and can rec
 
 - **Standard profiles** are only viewable from the **"Search"** tab.  
 - Any user, whether developer or standard, can view and edit their own profile at any time from the **"My Profile"** tab.  
+
