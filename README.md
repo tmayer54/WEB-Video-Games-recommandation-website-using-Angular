@@ -40,3 +40,81 @@ Default parameters are:
 Alternatively, both the back-end and front-end can be launched with a single command from the `frontend` folder:  
 ```bash
 npm start
+
+## Features  
+
+### Pre-registered Users  
+To test the site's functionalities, the following users are already registered in the database:  
+
+| Username         | Password | Developer? |
+|------------------|----------|------------|
+| Alex            | iron68   | Yes        |
+| Luc             | iron68   | Yes        |
+| Iron            | iron68   | No         |
+| LeBelfortdu90   | iron68   | Yes        |
+
+---
+
+### User Types  
+There are two types of users:  
+- **Standard User**  
+- **Developer**  
+
+Only **developers** can add games to the store. Both user types interact with games in the same way.  
+
+---
+
+### Game Browsing and Search  
+- Regardless of being logged in or not, users can view all listed games in the **"Store"** tab.  
+- Users can search for a specific game or user in the **"Search"** tab based on:  
+  - Game name  
+  - Price (minimum and maximum)  
+  - Developer name  
+
+---
+
+### Account Registration  
+- Any user can create an account via the **"Register"** tab.  
+- Users can choose:  
+  - Profile picture  
+  - Status (developer or standard user)  
+
+Once registered, the user is automatically logged into their account and can reconnect at any time using their credentials.  
+
+---
+
+### Game Reviews and Ratings  
+- Only logged-in users who have **purchased a game** (purchase available via the **"Learn More"** tab) can:  
+  - Add a comment  
+  - Rate the game  
+
+**Limit**: One comment per user per game.  
+- Comments and ratings are displayed in the **"Learn More"** section of each game.  
+
+---
+
+### Game Library  
+- The entire library of available games is accessible from the **"Store"** tab.  
+- Each game is displayed with:  
+  - A representative image  
+  - A short description  
+  - Categories  
+  - Overall player rating  
+
+- The **"Learn More"** tab provides detailed information:  
+  - Precise average rating  
+  - System requirements  
+  - Long description  
+  - Trailer video  
+  - Game images  
+  - Comments and reviews  
+
+---
+
+### User Profiles  
+- **Developer profiles** are accessible:  
+  - From each game created by the developer  
+  - Via the **"Search"** tab  
+
+- **Standard profiles** are only viewable from the **"Search"** tab.  
+- Any user, whether developer or standard, can view and edit their own profile at any time from the **"My Profile"** tab.  
