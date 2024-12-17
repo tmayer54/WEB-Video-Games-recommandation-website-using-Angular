@@ -1,0 +1,109 @@
+  <body>
+    <!-- Carousel -->
+    <!-- Home page-->
+    
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercave.com%2Fwp%2Fwp4344238.jpg&f=1&nofb=1&ipt=d73b6009d73e791863c8babdfc006651b832b78461f5f6c00296e45ff76e7d11&ipo=images"  alt="Erreur">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100" src="https://images.squarespace-cdn.com/content/v1/5d4b249616f93e000149aebd/769c92a0-70ad-4be1-ab6f-e7d4ff827d1f/18_The_Adventurers_Inn_Breakdown.jpg"  alt="Erreur">
+          </div>
+          <div class="carousel-item">
+            <img  src="https://images.squarespace-cdn.com/content/v1/5224e05de4b0329755b6310d/1445492229923-0G71UHYQHQ4DC74VT2OH/carchase_%288-11-14%29_web3000.jpg?format=2500w"class="d-block w-100" alt="Erreur">
+          </div>
+          <div class="text"> 
+            <h1 class="display-4 font-weight-bold  ">Bienvenue !</h1>
+            <p class="lead font-weight-normal textdet"> Ce site vous permet de consulter les jeux de différents développeurs, mais également de commenter, noter ou bien acheter leurs jeux !  </p>
+            <p class="lead font-weight-normal textdet"> Vous êtes developpeur ? Ajouter vos jeux sur notre site vous permettra de gagner en visibilité ! </p>
+            <p class="lead font-weight-normal textdet"> Dans tous les cas, notre équipe vous souhaite un agréable moment sur notre site :) </p>
+          </div>  
+        </div>
+
+      </div>
+  <div class="storeaccess">  <!-- Access to store page-->
+    <div class="my-3 py-3 textmag">
+      <h2 class="display-5 ">Magasin</h2>
+      <p class="lead ">Il suffit d'un clic pour accéder à notre bibliothèque de jeux et bénéficier des meilleurs prix disponibles sur le marché ! Ce serait bête de ne pas en profiter ... </p>
+      <button  type="button" class="btn btn-secondary btn-lg buttonmodif" id="buttonmodif" routerLink="/store">Boutique </button>
+      <div class="bg-light box-shadow mx-auto" style="width: 40%; margin-top:2%;">
+        <a  routerLink="/store" > <img width="100%" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.hdwallpapers.in%2Fdownload%2Ftom_clancys_rainbow_six_siege_ultimate_edition_4k-3840x2160.jpg&f=1&nofb=1&ipt=0cfaaddde6f014505db009f6f39df1cf2f08172a327248076d1b8573945f0c3f&ipo=images" class="image-zoom"></a>
+      </div>
+    
+    </div>
+
+
+  </div>
+
+  <div class="loginaccess"> <!-- Access to login page-->
+        <div class="my-3 p-3 textmag">
+          <h2 class="display-5 txtwh">Rejoignez notre communauté !</h2>
+          <p class="lead txtwh">Connectez-vous ou créez un compte afin d'accéder à de nombreuses fonctionnalités ! </p>
+        </div>
+        <div>
+            <a  *ngIf="!isLoggedIn; else logged" routerLink="/register" > <img width="20%" class="image-zoom-login" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.vectorstock.com%2Fi%2F1000x1000%2F91%2F25%2Flogin-web-screen-with-blue-design-template-vector-10019125.jpg&f=1&nofb=1&ipt=f11301aee8626779cd552b5beffc9fcf4f3f77a6c2c7c2209d353cf8034b3522&ipo=images"> </a>
+            <ng-template #logged>
+              <a [routerLink]="['/user',user.ID]" > <img width="20%" class="image-zoom-login" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn1.vectorstock.com%2Fi%2F1000x1000%2F91%2F25%2Flogin-web-screen-with-blue-design-template-vector-10019125.jpg&f=1&nofb=1&ipt=f11301aee8626779cd552b5beffc9fcf4f3f77a6c2c7c2209d353cf8034b3522&ipo=images"> </a>
+            </ng-template>
+        </div>
+</div>
+
+      <footer class="container py-5"> <!-- Footer information-->
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+          <small class="d-block mb-3 text-muted">&copy; 2023</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Fonctionnalités </h5>
+          <ul *ngIf="!isLoggedIn; else loggedFonc" class="list-unstyled text-small">
+            <li><a class="text-muted" routerLink="/register">Mettre une note à un jeu</a></li>
+            <li><a class="text-muted" routerLink="/register">Ecrire un commentaire sur un jeu</a></li>
+            <li><a class="text-muted" routerLink="/register">Ajouter de nouveaux jeux</a></li>
+            <li><a class="text-muted" routerLink="/register">Exclusivités liées au statut développeur</a></li>
+          </ul>
+          <ng-template #loggedFonc>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" [routerLink]="['/user',user.ID]">Mettre une note à un jeu</a></li>
+              <li><a class="text-muted" [routerLink]="['/user',user.ID]">Ecrire un commentaire sur un jeu</a></li>
+              <li><a class="text-muted" [routerLink]="['/user',user.ID]">Ajouter de nouveaux jeux</a></li>
+              <li><a class="text-muted" [routerLink]="['/user',user.ID]">Exclusivités liées au statut développeur</a></li>
+            </ul>
+          </ng-template>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Développeurs du site </h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="https://github.com/loricR">Loric RAVASSARD</a></li>
+            <li><a class="text-muted" href="https://github.com/Juloroti">Louis ROLLAND</a></li>
+            <li><a class="text-muted" href="https://github.com/tmayer54">Thibault MAYER</a></li>
+            <li><a class="text-muted" href="https://github.com/Iron68A">Alexandre BARTHELME</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5><a routerLink="news"class="text-muted" >A propos</a></h5>
+
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+    <script src="../../../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script> 
+  </body>
+
+

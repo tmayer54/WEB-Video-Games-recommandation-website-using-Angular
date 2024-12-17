@@ -1,0 +1,23 @@
+.card-group{
+    box-sizing: border-box;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px 30px;
+    box-shadow: black 4px 4px 20px;
+    opacity: 1;
+}
+.card-group.img {
+    width: 100%;
+}
+.game{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 20px auto;
+    padding: 10px 30px;
+}
+
+html{
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F3diphonewallpaper.com%2Fwp-content%2Fuploads%2F2017%2F10%2FBreath-Of-The-Wild-Wallpaper-For-iPhone.jpg&f=1&nofb=1&ipt=c8699c5475378600df185a5ab46b3e5c3761c502e68c456b3078937ef5462692&ipo=images');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;}

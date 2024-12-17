@@ -1,0 +1,36 @@
+.card{
+    margin: 20px auto;
+    padding: 10px 30px;
+    width: 70%;
+}
+.card-img-top{
+    width: 100%;
+}
+h5{
+    text-align: center;
+
+}
+span{
+    margin-right: 5px;
+    
+}
+.img{
+    margin-top: 5px;
+}
+
+/*Notation*/
+.rating {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+  }
+  
+.star {
+    display: inline-block;
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+}
+.active {
+    color: orange;
+}

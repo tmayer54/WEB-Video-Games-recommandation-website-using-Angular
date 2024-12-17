@@ -1,0 +1,200 @@
+<div *ngIf="pageLoaded" class="container">
+    <h3 class="card-title">{{game.name}}</h3>
+<!-- Game page ( with all information)-->
+
+    <div class="card " style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Informations techniques</h5>
+          <p class="card-text" style="text-align: center;"> Nous prenons soin de renseigner les configurations minimales nécessaires au lancement de chaque jeu pour garantir une expérience utilisateur inoubliable.</p>
+        </div>
+
+        <!-- Show Technical information-->
+
+        <ul class="list-group list-group-flush"> <!-- Display categories (fps etc..)-->
+          <li class="list-group-item">
+            <span *ngFor="let category of game.category; let i = index;" [ngSwitch]="i">    <!--Category-->
+                <span *ngSwitchCase="0" class="badge rounded-pill text-bg-primary">{{category}}</span>
+                <span *ngSwitchCase="1" class="badge rounded-pill text-bg-secondary">{{category}}</span>
+                <span *ngSwitchCase="2" class="badge rounded-pill text-bg-success">{{category}}</span>
+                <span *ngSwitchCase="3" class="badge rounded-pill text-bg-danger">{{category}}</span>
+                <span *ngSwitchCase="4" class="badge rounded-pill text-bg-warning">{{category}}</span>
+                <span *ngSwitchCase="5" class="badge rounded-pill text-bg-info">{{category}}</span>
+                <span *ngSwitchCase="6" class="badge rounded-pill text-bg-light">{{category}}</span>
+                <span *ngSwitchCase="7" class="badge rounded-pill text-bg-dark">{{category}}</span>
+            </span>        
+          </li>
+          <li class="list-group-item">Jeu développé par : <a href="javascript:void(0)" class="card-link" (click)="calldev()"> {{gameDev.username}}</a> </li>
+          <li class="list-group-item">
+            <span class="badge text-bg-warning" *ngIf="game.price > 0; else freeGame">{{game.price}}€</span>  <!--Price-->
+            <ng-template #freeGame>
+              <span class="badge text-bg-warning">Gratuit</span>
+            </ng-template>
+          </li>
+          <li class="list-group-item">
+            <ul class="rating"> <!-- Notation -->
+                <li class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [ngClass]="{'active': star <= average_rating_round}">
+                  &#9733;
+                </li>
+                <span class="badge rounded-pill text-bg-dark">
+                  Note moyenne : 
+                  {{ average_rating !== average_rating ? 'Aucune note attribuée' : average_rating + '/5' }}
+                </span>
+                
+                
+              </ul>
+          </li>
+          <li class="list-group-item"> <!--Minimum components-->
+            <span class="badge rounded-pill text-bg-info">{{game.cpu}}</span>
+            <span class="badge rounded-pill text-bg-success">{{game.gpu}}</span>
+            <span class="badge rounded-pill text-bg-danger">{{game.ram}}</span>   
+          </li>
+
+          
+          <div *ngIf="!isConnected" id="successMsg" class="alert alert-danger alert-dismissible" role="alert">
+            <strong>Vous devez être connecté pour acheter des jeux</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeSuccessMsg()"></button>
+          </div>
+
+          <ng-container *ngIf="isConnected">    
+            <button type="button" class="btn btn-primary" id="acheter" (click)="buyGame()">Acheter</button>  <!--Buy the game-->  
+          </ng-container>
+
+          
+
+            <div *ngIf="buyBool" id="successMsg" class="alert alert-success alert-dismissible" role="alert">
+              <strong> Jeu acheté ! Vous avez été débité de {{game.price}}€</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeSuccessMsg()"></button>
+            </div>
+          
+
+        </ul>
+    </div>
+
+    <div class="descri">
+        <h3>Description</h3>
+        <p>{{game.longDescription}}</p>   <!--Description-->
+    </div>
+    <hr> 
+
+
+    <hr>
+
+
+    <!-- Carousel -->
+    <ng-container *ngIf="game.images && game.images.length > 0">
+    <div #carousel id="carouselIndicators" class="carousel slide">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselIndicators" *ngFor="let image of game.images; let i = index" [attr.data-bs-slide-to]="i+1" [attr.aria-label]="'Slide ' + (i + 2)"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+        <!-- Video -->
+        <div #youtubePlayer class="carousel-item active">
+          <div class="video-player-container">
+            <youtube-player #youtubeVideo videoId="{{ game.videoCode }}" [playerVars]="{autoplay: 1}"  [height]="videoHeight" [width]="videoWidth"></youtube-player> 
+          </div>
+        </div>
+        <div class="carousel-item" *ngFor="let image of game.images; let i = index">
+            <img [src]="image" class="card-img-top" [alt]="'Image ' + (i + 2)">
+          </div>
+          
+        </div>
+
+        <!-- Navigation buttons -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    </ng-container>
+
+      
+    <hr>
+    <div class="com"> 
+        <h2> Zone de commentaires </h2><!--Commentary -->
+        
+        <div class="container mt-5">
+          <div class="d-flex justify-content-center row">
+              <div class="col-md-8">
+                  <div class="d-flex flex-column comment-section">
+                    <div class="bg-white p-2">
+                      <div *ngFor="let comment of processedComments" class="d-flex flex-row user-info"> <!--Comment-->
+                        <div class="d-flex flex-column justify-content-start ml-2">
+                          <span class="d-block font-weight-bold name">{{ comment.user[0].username }}</span>
+                          <span class="date text-black-50"> Note donnée : {{ comment.comment.note }}/5</span>
+                          <img class="rounded-circle" [src]="comment.user[0].profilePictureURL" width="40">
+                        </div>
+                        <div>
+                          <br><br>
+                          <p class="comment-text">{{ comment.comment.content }}</p>
+                        </div>
+                      </div>
+                      
+                    </div>
+
+                    <br>
+                      
+                    <div *ngIf="!isConnected" id="successMsg" class="alert alert-danger alert-dismissible" role="alert">
+                      <strong>Vous devez être connecté pour poster un avis</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeSuccessMsg()"></button>
+                    </div>
+
+                    <div *ngIf="isConnected">
+                      
+                      <div *ngIf="!hasAlreadyCommented" class="bg-light p-2">
+
+                        <div>
+                          <li class="star" *ngFor="let star of [1, 2, 3, 4, 5]" (click)="setrating(star)" [ngClass]="{'active': star <= rating}">
+                            &#9733;
+                          </li>
+                          <span class="date text-black-50">Faites porter votre voix et donnez votre avis sur ce jeu !</span>
+                        </div>
+
+                        <div class="d-flex flex-row align-items-start">
+                          <img class="rounded-circle" [src]="user2.profilePictureURL" width="40">
+                          <textarea class="form-control ml-1 shadow-none textarea" [(ngModel)]="comment_string"></textarea>
+                        </div>
+                        <div class="mt-2 text-right">
+                          <button id="postcomm" class="btn btn-primary btn-sm shadow-none" type="button" (click)="postCommForm()">Publier le commentaire</button>
+                        </div>
+                                       
+                      </div>
+
+                      <div *ngIf="hasAlreadyCommented" id="successMsg" class="alert alert-danger alert-dismissible" role="alert">
+                        <strong>Vous avez déjà commenté ce jeu ou ne l'avez pas encore acheté !</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeSuccessMsg()"></button>
+                      </div>
+
+                      <div *ngIf="comm" id="successMsg" class="alert alert-success alert-dismissible" role="alert">
+                        <strong>Votre commentaire a été envoyé ! :)</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeSuccessMsg()"></button>
+                      </div>
+
+                      <br><br>
+
+
+                    </div>
+                      
+
+                      
+
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    
+
+
+
+</div>
+

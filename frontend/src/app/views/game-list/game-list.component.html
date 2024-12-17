@@ -1,0 +1,8 @@
+<html>
+    <!--List of all games-->
+<div class="card-group">
+    <app-game class="game" *ngFor="let gameVar of gameArray; let i = index" [game]="gameVar" [game_idx]="i"/>
+</div>
+
+</html> 
+<router-outlet></router-outlet>

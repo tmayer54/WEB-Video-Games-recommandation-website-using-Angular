@@ -1,0 +1,51 @@
+<div class="card" >
+    <!-- card used to display the game in the store page -->
+    <div class="card-body">
+        <h5 class="card-title">{{game.name}}</h5>
+        <span *ngFor="let category of game.category; let i = index;" [ngSwitch]="i">    <!--Category-->
+            <span *ngSwitchCase="0" class="badge rounded-pill text-bg-primary">{{category}}</span>
+            <span *ngSwitchCase="1" class="badge rounded-pill text-bg-secondary">{{category}}</span>
+            <span *ngSwitchCase="2" class="badge rounded-pill text-bg-success">{{category}}</span>
+            <span *ngSwitchCase="3" class="badge rounded-pill text-bg-danger">{{category}}</span>
+            <span *ngSwitchCase="4" class="badge rounded-pill text-bg-warning">{{category}}</span>
+            <span *ngSwitchCase="5" class="badge rounded-pill text-bg-info">{{category}}</span>
+            <span *ngSwitchCase="6" class="badge rounded-pill text-bg-light">{{category}}</span>
+            <span *ngSwitchCase="7" class="badge rounded-pill text-bg-dark">{{category}}</span>
+        </span>
+
+
+        <ng-container *ngIf="game.images && game.images.length > 0">
+            <img [src]="game.images[0]" class="card-img-top" alt="..."> <!--Image-->
+        </ng-container>
+
+    <!--Show basic info-->
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> 
+                <p> En quelques mots : </p>
+                <p>{{game.description}}</p>   <!--Description-->
+                <p>Jeu concu par :<a href="javascript:void(0)" class="card-link" (click)="calldev()"> {{gameDev.username}}</a></p>  <!--Developer name-->
+                <!-- Notation -->
+                <ul class="rating">
+                    <li class="star" *ngFor="let star of [1, 2, 3, 4, 5]" [ngClass]="{'active': star <= average_rating_round}">
+                        &#9733;
+                    </li>
+                    <li></li>
+                    <span *ngIf="average_rating == 0" class="date text-black-50">Aucune note attribuée pour le moment</span>
+                  </ul>
+                <!-- Notation -->
+
+
+
+            </li>
+            <li class="text-center list-group-item">
+                <span class="badge text-bg-warning" *ngIf="game.price > 0; else freeGame">{{game.price}}€</span>  <!--Price-->
+                <ng-template #freeGame>
+                    <span class="badge text-bg-warning">Gratuit</span>
+                </ng-template>
+            </li>
+        </ul>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary" (click)="readMore()">En savoir plus</button>  <!--Link to full game display-->    
+        </div>
+    </div>
+</div>

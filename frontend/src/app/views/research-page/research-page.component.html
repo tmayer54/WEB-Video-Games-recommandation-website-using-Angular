@@ -1,0 +1,57 @@
+<div class="search-box">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Recherche par:</span>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="searchType">
+      <option value="game">Jeu</option>
+      <option value="user">Utilisateur</option>
+    </select>
+  </div>
+  <form>
+  <div class="search-container" *ngIf="searchType === 'game'">
+  
+    <label for="gameName">Nom du jeu :</label>
+    <input type="text" id="gameName" name="gameName" [(ngModel)]="gameName">
+
+    <label for="price">Prix du jeu (€) :</label>
+    <ngx-slider [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options"></ngx-slider>
+    
+    <label for="developer">Développeur du jeu :</label>
+    <input type="text" id="developer" name="developer" [(ngModel)]="developer">
+  </div>
+  <div class="search-container" *ngIf="searchType === 'user'">
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" id="username" name="username" [(ngModel)]="searchQuery">
+  </div>
+  <div class="text-center">
+  <button class="btn" type="submit" (click)="search()">Rechercher</button>
+  </div>
+  </form>
+</div>
+
+<div class="user-search" *ngIf="searchType === 'user'">
+  <table>
+    <tbody>
+      <tr *ngFor="let item of userArray">
+        <th scope="row">{{ item.username }}</th>
+        <td><img src="{{ item.profilePictureURL }}" width="5%"></td>
+        <td><a href="http://localhost:4200/user/{{ item.ID }}">Voir le profil</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<table>
+  <tbody>
+      <tr *ngIf="searchType === 'game'">
+        <td>
+          <div class="card-group">
+            <app-game class="game" *ngFor="let gameVar of gameArray; let i = index" [game]="gameVar" [game_idx]="i"/>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  

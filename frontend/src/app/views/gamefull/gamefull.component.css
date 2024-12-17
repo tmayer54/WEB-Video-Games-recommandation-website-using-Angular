@@ -1,0 +1,108 @@
+
+/*Change the icon of the prev arrow*/
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'><path d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/></svg>") !important;
+}
+/*Change the icon of the next arrow*/
+.carousel-control-next-icon {   
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+/*Display the indicators below the content*/
+.carousel-indicators {
+    margin-bottom: -20px;
+}
+
+/*Display the prev arrow outside the content*/
+.carousel-control-prev {
+    margin-left: -120px;
+}
+
+/*Display the prev arrow outside the content*/
+.carousel-control-next {
+    margin-right: -120px;
+}
+
+/*Change the color of the indicators*/
+.carousel-indicators button {
+    background-color: black;
+}
+
+/*Modification hors bootstrap*/
+.card-title{
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+}
+.descri{
+    padding: 10px 30px;
+    width: 50%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    display:inline-block;
+    vertical-align: top;
+}
+.card{
+    display: inline-block;
+    margin-right: 15%;
+}
+/*Notation*/
+.rating {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+  }
+  
+.star {
+    display: inline-block;
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+}
+.active {
+    color: orange;
+}
+/*Zone commentaire*/
+/*Notation*/
+.rating {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+  }
+  
+.star {
+    display: inline-block;
+    font-size: 24px;
+    color: gray;
+    cursor: pointer;
+}
+.active {
+    color: orange;
+}
+/*Commentary*/
+.com{
+    margin: 0 auto;
+    width: 80%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    vertical-align: top;
+}
+h2,.title{
+    text-align: center;
+}
+
+
+
+
+
+.video-player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Add any additional styles as needed */
+  }
+
+
+/* CSS ZONE COMMENTAIRE */
+
+body{background: #eee}.date{font-size: 11px}.comment-text{font-size: 12px}.fs-12{font-size: 12px}.shadow-none{box-shadow: none}.name{color: #007bff}.cursor:hover{color: blue}.cursor{cursor: pointer}.textarea{resize: none}

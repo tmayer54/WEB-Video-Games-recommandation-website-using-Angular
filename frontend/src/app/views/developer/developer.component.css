@@ -1,0 +1,31 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #9EADC8;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, #9EADC8, #5B618A);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom,#9EADC8,#5B618A);
+}
+
+.alert {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+  
+.alert.fade-out {
+    opacity: 0;
+}
+
+.game-name {
+  font-weight: normal; /* or any other regular font style */
+  cursor:pointer;
+}
+
+.game-name:hover { color:blue;}
+
+h5 {
+  position : center;
+}
+  

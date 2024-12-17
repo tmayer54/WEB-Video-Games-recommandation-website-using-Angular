@@ -1,0 +1,33 @@
+<ul class="nav nav-pills mb-3 nav-fill sticky-top backperso" id="pills-tab" role="tablist">
+  <!--Dynamic navbar-->
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" [ngClass]="{active: navItem.get('home')}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" routerLink=''>Accueil</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" [ngClass]="{active: navItem.get('store')}" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" routerLink='/store'>Boutique</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" [ngClass]="{active: navItem.get('news')}" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false" routerLink='/news'>Actualité</button>
+    </li>
+
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" [ngClass]="{active: navItem.get('research')}" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" routerLink='/research'><app-research-bar></app-research-bar></button>
+    </li>
+
+    <li class="nav-item menu-deroulant" role="presentation">
+      <button *ngIf="!isLoggedIn; else logged" class="nav-link" [ngClass]="{active: navItem.get('profile')}" id="pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#pills-disabled" type="button" role="tab" aria-controls="pills-disabled" aria-selected="false" routerLink='/register' >Se connecter</button>
+      
+      <ng-template #logged>
+        <button class="nav-link" [ngClass]="{active: navItem.get('profile')}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" (click)="seeProfile()">Mon profil</button>
+        <ul class="sous-menu backperso">
+          <li class="nav-item elem-menu" role="presentation">
+            <button class="nav-link" id="pills-home-tab" type="button" role="tab" aria-controls="pills-home" aria-selected="true" [routerLink]="['/usermodif',user.ID]">Modifier profil</button>
+          </li>
+          <li class="nav-item elem-menu" role="presentation">
+            <button #logged class="nav-link" id="pills-disabled-tab" type="button" role="tab" aria-selected="false" (click)="logout()" >Se déconnecter</button>
+          </li>
+        </ul>
+      </ng-template>
+    </li>
+</ul>

@@ -1,0 +1,312 @@
+<!-- User profile -->
+<section class="vh-100" style="background-color: #f4f5f7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <h2 *ngIf="isUserConnectedDev; else notMe">Votre profil</h2>
+        <ng-template #notMe>
+          <h2>Profil de {{user.username}}</h2>
+        </ng-template>
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="{{profilePictureUrl}}" alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+              <h5>{{ username }}</h5>
+              <p>Utilisateur</p>
+              <i class="far fa-edit mb-5"></i>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <div class="col-12 mb-3" *ngIf="!showAddGameSection">
+                  <h6>Informations</h6>
+                  <div *ngIf="isUserConnectedDev">
+                    <hr class="mt-0 mb-4">
+                    <div class="col-10 mb-3">
+                      <div class="row pt-1">
+                        <div class="col-6 mb-3">
+                          <h6>Status du compte : </h6>
+                          <p class="text-muted">{{ isDeveloper ? 'Développeur' : 'Utilisateur non développeur' }}</p>
+                        </div>
+                      </div>
+                      <h6>Email :</h6>
+                      <p class="text-muted">{{ user.email }}</p>
+                    </div>
+                  </div>
+                  <hr class="mt-0 mb-4">
+                  <div *ngIf="!isDeveloper && isUserConnectedDev" class="row pt-1">
+                    <p class="text-muted">Vous n'êtes pas développeur donc vous ne pouvez pas ajouter de jeux!</p>
+                  </div>
+                  <div *ngIf="!isDeveloper && !isUserConnectedDev" class="row pt-1">
+                    <p class="text-muted">Ce compte n'est pas un compte développeur!</p>
+                  </div>
+                </div> 
+
+                  <div *ngIf="!isDeveloper" class="row pt-1">
+
+                    <div class="col-12 mb-3" style = "text-align: center">
+                      <button class="btn btn-primary" (click)="toggleGamesBought()">  <!-- Toggle games -->
+                        {{ showGamesBought ? 'Cacher les jeux achetés' : 'Voir les jeux achetés' }}
+                      </button>
+                    </div>
+                    
+                    <div class="col-12" *ngIf="showGamesBought">
+                      <h6>Jeux achetés :</h6>
+                      <hr class="mt-0 mb-4">
+                      <div *ngFor="let game of gamesBought; let i = index"> <!-- Display games bought -->
+                      <h6>
+                          <strong>Jeu {{ i + 1 }} : </strong>
+                          <span class="game-name" (click)="redirectToGamePage(game.ID)">{{ game.name }}</span>
+                      </h6>
+                        
+                      </div><br>
+                      <hr class="mt-0 mb-4">
+                        <br><br>
+                    </div>
+
+                  </div>
+                  <div *ngIf="isDeveloper" class="row pt-1"> <!-- If user is a developer -->
+                    <div class="col-12 mb-3" style = "text-align: center">
+                      <button class="btn btn-primary" (click)="toggleGames()">  <!-- Toggle games -->
+                        {{ showGames ? 'Cacher les jeux développés' : 'Voir les jeux développés' }}
+                      </button>
+                    </div>
+                  
+                    <div class="col-12" *ngIf="showGames">
+                      <h6>Jeux développés :</h6>
+                      <hr class="mt-0 mb-4">
+                      <div *ngFor="let game of games; let i = index"> <!-- Display games -->
+                        <h6>
+                          <strong>Jeu {{ i + 1 }} : </strong>
+                          <span class="game-name" (click)="redirectToGamePage(game.ID)">{{ game.name }}</span>
+                        </h6>
+                      </div>
+                      <br>
+                      <hr class="mt-0 mb-4">
+                    </div>
+
+
+                    <div class="col-12 mb-3" style = "text-align: center">
+                      <button class="btn btn-primary" (click)="toggleGamesBought()">  <!-- Toggle games -->
+                        {{ showGamesBought ? 'Cacher les jeux achetés' : 'Voir les jeux achetés' }}
+                      </button>
+                    </div>
+
+                    
+
+                      <br><br><br>
+                      <hr class="mt-0 mb-4">
+
+                    <div class="col-12 mb-3">
+                      <br> 
+                    <div *ngIf="isUserConnectedDev" class="col-12 mb-3">
+
+                      <div class="col-12" *ngIf="showGamesBought">
+                        <h6>Jeux achetés :</h6>
+                        <hr class="mt-0 mb-4">
+                        <div *ngFor="let game of gamesBought; let i = index"> <!-- Display games bought -->
+                        <h6>
+                            <strong>Jeu {{ i + 1 }} : </strong>
+                            <span class="game-name" (click)="redirectToGamePage(game.ID)">{{ game.name }}</span>
+                        </h6>
+                          
+                        </div><br>
+                        <hr class="mt-0 mb-4">
+                          <br><br>
+                      </div>
+
+                      <div style="text-align: center">
+                        <button class="btn btn-primary" (click)="showAddGameSection = !showAddGameSection">
+                          {{ showAddGameSection ? 'Cacher section ajouter' : 'Ajouter un nouveau jeu dont vous êtes fier !' }}
+                        </button>
+                      </div>
+                      <!-- Add game section -->
+                      <br>
+                      <div class="col-12 mb-3" *ngIf="showAddGameSection">
+                        <hr class="mt-0 mb-4">
+                        <form [formGroup]="userForm"> <!-- Form for adding a game -->  
+
+                          <h5 style="text-align:center">Informations à compléter</h5>
+
+                          <br>
+                          <hr class="mt-0 mb-4">
+  
+                          <div class="mt-3">  
+                            <h6> Nom :</h6>
+                            <input type="text" class="form-control" placeholder="Nom du jeu" formControlName="gameName" name="gameName">
+                          </div>
+  
+                          <!-- Description -->
+                          <div class="mt-3">
+                            <br>
+                            <h6>Description courte:</h6>
+                            <textarea class="form-control mt-2" rows="4" placeholder="Description" formControlName="description" name="description"></textarea>
+                          </div>
+  
+                          <br>
+                          
+                          <h6> Prix :</h6>
+                          <input type="number" class="form-control mt-3" placeholder="Prix" formControlName="price" name="price">
+  
+  
+                          <br><br>
+                          <hr class="mt-0 mb-4">
+  
+                          <h5 style="text-align:center">Informations additionnelles</h5>
+  
+                          <br>
+                          <hr class="mt-0 mb-4">
+  
+  
+                          <!-- Long Description-->
+                          <div class="mt-3">
+                            <h6>Description longue:</h6>
+                            <textarea class="form-control mt-2" rows="8" placeholder="Description longue" formControlName="longDescription" name="longDescription"></textarea>
+                          </div>
+  
+                          <br>
+                          <!-- Categories -->
+                          <h6> Catégories :</h6>
+                          <div>
+                            <label for="category-select"> Choisir des catégories :  .</label>
+                            <select id="category-select" (change)="addCategory($event.target)">
+                              <option value="" disabled selected>Choisir une catégorie</option>
+                              <option *ngFor="let category of predefinedCategories" [value]="category">{{ category }}</option>
+                            </select>
+                          </div>
+  
+                          <br>
+  
+                          <!-- Selected categories-->
+                          <div *ngIf="categories.length > 0">
+                            <h6>Selected Categories:</h6>
+                            <ul>
+                              <li *ngFor="let selectedCategory of categories">{{ selectedCategory }}</li>
+                            </ul>
+                          </div>
+  
+                          <br>
+                          <!-- Video Code-->
+                          <h6> Code vidéo Youtube :</h6>
+                          <p class="text-muted">Le code d'une vidéo Youtube est le code qui est après watch?v=, ici la partie en gras: https://www.youtube.com/watch?v=<strong>QO1adblLSSA</strong>.</p>
+                          <input type="text" class="form-control mt-3" placeholder="Video Code" formControlName="videoCode" name="videoCode">
+
+  
+                          <br>
+  
+                          <!-- Images -->
+                          <div class="mt-3">
+                            <h6>Images (à envoyer individuellement !):</h6>
+                            <div class="mt-3">
+                              <div *ngIf="images.length > 0">
+                                <img *ngFor="let imagePath of images" [src]="imagePath" alt="Uploaded Image" width="200">
+                              </div>
+                              <div>
+                                <input type="file" (change)="onFileSelected($event)" [disabled]="!isSelectedFile">
+                              </div>
+                            </div>
+                            <!--<button class="btn btn-primary mt-2" (click)="addImage()">Add Image</button>-->
+                            <button class="btn btn-success mt-3" (click)="uploadFile()">Ajouter l'image</button>
+                          </div>
+  
+                          <br><br>
+  
+                          <hr class="mt-0 mb-4">
+  
+                          <h5 style="text-align:center">Spécifications recommandées: </h5>
+  
+                          <br>
+                          <hr class="mt-0 mb-4">
+  
+                          <!-- Setup needed for the game -->
+  
+                          <!-- CPU -->
+                          
+                          <div>
+                            <select id="category-select" (change)="addCPU($event.target)">
+                              <option value="" disabled selected>CPU recommandé</option>
+                              <option *ngFor="let cpu of predefinedCPU" [value]="cpu">{{ cpu }}</option>
+                            </select>
+                          </div>
+                          <br>
+  
+                          <div *ngIf="predefinedCPU.length == 0"> <!-- If the user has already selected a CPU -->
+                            <h6>CPU séléctionné :</h6>
+                            <ul>
+                              <li>{{ recommendedCPU }}</li>
+                            </ul>
+                          </div>
+  
+                          <hr class="mt-0 mb-4">
+  
+                          <!-- GPU -->
+                          <div>
+                            <select id="category-select" (change)="addGPU($event.target)">  <!-- Select the GPU -->
+                              <option value="" disabled selected>GPU recommandé</option>
+                              <option *ngFor="let gpu of predefinedGPU" [value]="gpu">{{ gpu }}</option>
+                            </select>
+                          </div>
+                          <br>
+                          <div *ngIf="predefinedGPU.length == 0">
+                            <h6>GPU séléctionné:</h6>
+                            <ul>
+                              <li>{{ recommendedGPU }}</li>
+                            </ul>
+                          </div>
+                        
+  
+                          <hr class="mt-0 mb-4">
+                        
+                          <!-- RAM -->
+                          <div>
+                            <select id="category-select" (change)="addRAM($event.target)">
+                              <option value="" disabled selected>RAM recommandée</option>
+                              <option *ngFor="let ram of predefinedRAM" [value]="ram">{{ ram }}</option>
+                            </select>
+                          </div>
+                          <br>
+                          <div *ngIf="predefinedRAM.length == 0">
+                            <h6>RAM séléctionnée:</h6>
+                            <ul>
+                              <li>{{ recommendedRAM }}</li>
+                            </ul>
+                          </div>
+  
+                          <hr class="mt-0 mb-4">
+                        
+                          <!-- Submit -->
+                          <br>
+                          <div style="text-align:center">
+                            <button style="display: block; margin: 0 auto;" class="btn btn-success mt-3" (click)="addGameByDeveloper()">Publier votre jeu!</button>
+                          </div>
+  
+                        </form>
+
+
+                    </div>
+                    
+                    </div>
+                  </div>
+                  
+                </div>
+                
+
+                <!-- Success message -->
+                <div *ngIf="showSuccessMsg" id="successMsg" class="alert alert-success alert-dismissible" role="alert">
+                    <strong>{{successMsg}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="closeSuccessMsg()"></button>
+                </div>
+
+                
+                  
+                  
+                  
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
